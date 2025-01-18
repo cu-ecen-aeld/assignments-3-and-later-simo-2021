@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     FILE *file = fopen(file_path, "w");
     if (file == NULL) {
         syslog(LOG_ERR, "Erreur lors de l'ouverture du fichier %s: %m", file_path);
-        return EXIT_FAILURE;
+        return 1;
     }
 
     // Écrire la chaîne de caractères dans le fichier
@@ -40,13 +40,13 @@ int main(int argc, char *argv[]) {
     if (len < 0) {
         syslog(LOG_ERR, "Erreur lors de l'écriture dans le fichier %s: %m", file_path);
         fclose(file);
-        return EXIT_FAILURE;
+        return 1;
     }
 
     // Fermer le fichier
     if (fclose(file)!= 0) {
         syslog(LOG_ERR, "Erreur lors de la fermeture du fichier %s: %m", file_path);
-        return EXIT_FAILURE;
+        return 1;
     }
 
     // Enregistrer un message de débogage dans syslog
@@ -55,5 +55,5 @@ int main(int argc, char *argv[]) {
     // Fermer la connexion avec le démon syslog
     closelog();
 
-    return EXIT_SUCCESS;
+    return 1;
 }
