@@ -1,14 +1,17 @@
 #!/bin/sh
 # Tester script for assignment 1 and assignment 2
 # Author: Siddhant Jajoo
+# Modified by Arnaud Simo
 
-set -e
+#set -e
 set -u
 
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
-WRITEDIR=/tmp/aeld-data
+WRITEDIR=/tmp/aeld-data  #/home/tchuinkou/linux_sys/finder-app
 username=$(cat conf/username.txt)
+
+#echo "NUMFILES value is $NUMFILES"
 
 if [ $# -lt 3 ]
 then
@@ -44,23 +47,48 @@ then
 	if [ -d "$WRITEDIR" ]
 	then
 		echo "$WRITEDIR created"
+		ls "$WRITEDIR"
 	else
 		exit 1
 	fi
 fi
+
 #echo "Removing the old writer utility and compiling as a native application"
 #make clean
-#make
+#make -f Makefile
 
-for i in $( seq 1 $NUMFILES)
-do
-	./writer.sh "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+#compile writer.c
+#gcc -Wall writer.c -o writer
+
+for i in $(seq 1 "$NUMFILES"); do
+    echo "counter"
+    echo "Iteration $i of $NUMFILES"
+    echo "debug: $WRITEDIR/${username}_$i.txt"
+    
+    file_to_write="$WRITEDIR/${username}$i.txt"
+    echo "Chemin du fichier à écrire : $file_to_write" # Correction de l'encodage des accents
+
+    if [ -e "$file_to_write" ]; then
+        echo "File $file_to_write already exists, skipping write operation."
+    else
+        echo "Writing to $file_to_write"
+        ./writer "$file_to_write" "$WRITESTR"
+        echo "Après l'appel à writer"
+
+        if [ $? -ne 0 ]; then
+            echo "Error writing to $file_to_write"
+            exit 1
+        fi    
+    fi
 done
 
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
 
+echo "Debug:: ("$WRITESTR")"
+echo "${MATCHSTR}"
+
 # remove temporary directories
-rm -rf /tmp/aeld-data
+#rm -rf /tmp/aeld-data
 
 set +e
 echo ${OUTPUTSTRING} | grep "${MATCHSTR}"

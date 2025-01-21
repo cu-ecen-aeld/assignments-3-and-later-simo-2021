@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
     // Vérifier le nombre d'arguments
     if (argc!= 3) {
         fprintf(stderr, "Usage: %s <file> <string>\n", argv[0]);
-        return 1;
+        return EXIT_FAILURE;;
     }
 
     // Ouvrir la connexion avec le démon syslog
@@ -29,10 +29,11 @@ int main(int argc, char *argv[]) {
     const char *text = argv[2];
 
     // Ouvrir le fichier en mode écriture
+    printf("Chemin du fichier: %s\n", file_path);
     FILE *file = fopen(file_path, "w");
     if (file == NULL) {
         syslog(LOG_ERR, "Erreur lors de l'ouverture du fichier %s: %m", file_path);
-        return 1;
+        return EXIT_FAILURE;;
     }
 
     // Écrire la chaîne de caractères dans le fichier
@@ -40,13 +41,13 @@ int main(int argc, char *argv[]) {
     if (len < 0) {
         syslog(LOG_ERR, "Erreur lors de l'écriture dans le fichier %s: %m", file_path);
         fclose(file);
-        return 1;
+        return EXIT_FAILURE;;
     }
 
     // Fermer le fichier
     if (fclose(file)!= 0) {
         syslog(LOG_ERR, "Erreur lors de la fermeture du fichier %s: %m", file_path);
-        return 1;
+        return EXIT_FAILURE;;
     }
 
     // Enregistrer un message de débogage dans syslog
