@@ -1,5 +1,6 @@
 #!/bin/sh
 # Tester script for assignment 1 and assignment 2
+# and assignement 3-part 2
 # Author: Siddhant Jajoo
 # Modified by Arnaud Simo
 
@@ -13,6 +14,7 @@ username=$(cat conf/username.txt)
 
 #echo "NUMFILES value is $NUMFILES"
 
+## test si le nombre de parametre < 3
 if [ $# -lt 3 ]
 then
 	echo "Using default value ${WRITESTR} for string to write"
