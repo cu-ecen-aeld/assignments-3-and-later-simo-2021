@@ -1,12 +1,18 @@
 # !/bin/bash
 # Script to open qemu terminal.
-# Author: Siddhant Jajoo.
+# Author: Siddhant Jajoo. 
+# Modify by Arnaud Simo. 03.02.2025
+# lines 11 and 7 is new
 
+#OUTDIR=/home/tchuinkou/aeld
+OUTDIR=/tmp/aeld
 set -e
 
+#sudo cp -r "${OUTDIR}/linux-stable/arch/arm64/boot/Image" "${OUTDIR}/"  # copy IMage
 OUTDIR=$1
 
 if [ -z "${OUTDIR}" ]; then
+	#OUTDIR=/home/tchuinkou/aeld
     OUTDIR=/tmp/aeld
     echo "No outdir specified, using ${OUTDIR}"
 fi
