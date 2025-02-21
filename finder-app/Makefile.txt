@@ -1,19 +1,14 @@
-#Ecrit par Arnaud
+# Ecrit par Arnaud
 
 # Nom de l'exécutable
 TARGET = writer
 
-# Nom du compilateur cross-compilateur.
-CROSS_COMPILE = /home/tchuinkou/tools/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc
-
-# Options de compilation
-CFLAGS = -Wall -g
-
-# Si la variable CROSS_COMPILE est définie, 
-# utilisez le cross-compilateur.
+# Nom du compilateur (utilisation du cross-compilateur si défini)
+CROSS_COMPILE ?= /home/tchuinkou/tools/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc
 CC = $(CROSS_COMPILE)
 
-
+# Options de compilation
+CFLAGS = -Wall -g -std=c11
 
 # Fichier source
 SRCS = writer.c

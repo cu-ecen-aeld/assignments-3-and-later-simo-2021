@@ -11,9 +11,11 @@ set -u
 
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
-WRITEDIR=/tmp/aeld-data
+WRITEDIR=/tmp/aeld-data  #/home/tchuinkou/_old 
 username=$(cat /etc/finder-app/conf/username.txt)
 #username=$(cat conf/username.txt)
+
+cd `dirname $0`
 
 if [ $# -lt 3 ]
 then
@@ -64,12 +66,12 @@ fi
 
 for i in $( seq 1 $NUMFILES)
 do	
-	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	/etc/finder-app/writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
 #read -p "hint enter to continue..."
 #La sortie de finder.sh sera capturée dans la variable OUTPUTSTRING
-OUTPUTSTRING=$(sh finder.sh "$WRITEDIR" "$WRITESTR")
+OUTPUTSTRING=$(/etc/finder-app/finder.sh "$WRITEDIR" "$WRITESTR")
 ##write output of the finder command to /tmp/assignment4-result.txt
 echo ${OUTPUTSTRING} > /tmp/assignment4-result.txt
 
@@ -79,10 +81,12 @@ echo ${OUTPUTSTRING} > /tmp/assignment4-result.txt
 set +e
 echo ${OUTPUTSTRING} | grep "${MATCHSTR}"
 if [ $? -eq 0 ]; then
-	echo "success"
+#La commande tee permet d'écrire la sortie à la fois sur la sortie standard 
+#et dans un fichier, et l'option -a permet d'ajouter le texte à la fin du fichier.
+	echo "success" | tee -a /tmp/assignment4-result.txt
 	exit 0
 else
-	echo "failed: expected  ${MATCHSTR} in ${OUTPUTSTRING} but instead found"
+	echo "failed: expected  ${MATCHSTR} in ${OUTPUTSTRING} but instead found" | tee -a /tmp/assignment4-result.txt
 	exit 1
 fi
 
