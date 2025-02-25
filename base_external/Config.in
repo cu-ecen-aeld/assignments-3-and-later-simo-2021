@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+source "$BR2_EXTERNAL_project_base_PATH/package/aesd-assignments/Config.in"
+=======
+menu "External packages"
+
+source "$(BR2_EXTERNAL_PROJECT_BASE_PATH)/package/aesd-assignments/Config.in"
+
+endmenu
+>>>>>>> ac5bd35 (add buildroot and some files(build.sh))
