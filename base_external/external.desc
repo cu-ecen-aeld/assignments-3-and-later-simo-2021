@@ -1,8 +1,2 @@
 name: project_base
-<<<<<<< HEAD
-description: Base customization for project
-=======
-description: External layer for aesd - assignments in buildroot
-version: 1.0
-maintainer: Arnaud Simo at.simo@pm.me
->>>>>>> ac5bd35 (add buildroot and some files(build.sh))
+desc: External project for AESD assignments
