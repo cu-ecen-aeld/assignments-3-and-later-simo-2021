@@ -1,12 +1,15 @@
 #!/bin/sh
 # Tester script for assignment 1 and assignment 2
 # Author: Siddhant Jajoo
+# Modified by Arnaud, on the 27.11.2025
 
 set -e
 set -u
 
+#Arguments
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
+
 WRITEDIR=/tmp/aeld-data
 username=$(cat conf/username.txt)
 
@@ -29,6 +32,12 @@ MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines a
 
 echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
 
+echo "                                 "
+echo "--DEBUG 01--"
+#echo "output=OUTPUTSTRING=$OUTPUTSTRING"
+echo "output2=MATCHSTR=$MATCHSTR"
+echo "---------"
+ 
 rm -rf "${WRITEDIR}"
 
 # create $WRITEDIR if not assignment1
@@ -58,9 +67,14 @@ do
 done
 
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
+echo "                                 "
+echo "--DEBUG 02--"
+echo "output=OUTPUTSTRING=$OUTPUTSTRING"
+echo "output2=MATCHSTR=$MATCHSTR"
+echo "---------"
 
 # remove temporary directories
-rm -rf /tmp/aeld-data
+#rm -rf /tmp/aeld-data
 
 set +e
 echo ${OUTPUTSTRING} | grep "${MATCHSTR}"
