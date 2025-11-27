@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/bin/sh
 # Tester script for assignment 1 and assignment 2
 # Author: Arnaud Simo
@@ -18,6 +19,29 @@ then
 	echo "      ./writer.sh  /dir1/subdir1/text.txt  EnterAstring"
 	exit 1
 
+=======
+
+#!/bin/sh
+# Tester script for assignment 1 and assignment 2
+# Author: Arnaud Simo
+# 24.11.2025
+
+#set -e
+#set -u
+
+##arguments
+writefile="$1"
+writestr="$2"
+
+ 
+# Check argument count
+if [ $# -lt 2 ]  
+then	
+	echo "Error::no arguments has been specify."
+	echo "      ./writer.sh  /dir1/subdir1/text.txt  EnterAstring"
+	exit 1
+
+>>>>>>> acb74d7 (ajout de tous les fichiers)
 fi
 
 #extract dir from file  path
@@ -36,3 +60,7 @@ fi
 
 # write text into file (overwrite)
 echo "$writestr" >  "$writefile"
+<<<<<<< HEAD
+=======
+>>>>>>> 3b7e63c (ajout des fichiers du dossier finder-app)
+>>>>>>> acb74d7 (ajout de tous les fichiers)

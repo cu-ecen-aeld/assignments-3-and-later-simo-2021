@@ -30,4 +30,9 @@ fi
 
 MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines are ${NUMLINES}"
 
+<<<<<<< HEAD
 echo  "${MATCHSTR}"
+=======
+echo  "${MATCHSTR}"
+>>>>>>> 3b7e63c (ajout des fichiers du dossier finder-app)
+>>>>>>> acb74d7 (ajout de tous les fichiers)
