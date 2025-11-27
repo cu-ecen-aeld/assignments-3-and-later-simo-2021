@@ -73,16 +73,6 @@ echo "output=OUTPUTSTRING=$OUTPUTSTRING"
 echo "output2=MATCHSTR=$MATCHSTR"
 echo "---------"
 
-<<<<<<< HEAD
-# remove temporary directories
-#rm -rf /tmp/aeld-data
-=======
-
-# remove temporary directories
-rm -rf /tmp/aeld-data
-
->>>>>>> acb74d7 (ajout de tous les fichiers)
-
 set +e
 echo ${OUTPUTSTRING} | grep "${MATCHSTR}"
 if [ $? -eq 0 ]; then
