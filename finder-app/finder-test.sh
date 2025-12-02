@@ -3,6 +3,9 @@
 # Author: Siddhant Jajoo
 # Modified by Arnaud, on the 27.11.2025
 
+# Updates
+# replace writer.sh by writer.c
+
 set -e
 set -u
 
