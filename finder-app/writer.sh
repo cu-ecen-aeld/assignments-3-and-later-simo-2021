@@ -2,6 +2,8 @@
 # Tester script for assignment 1 and assignment 2
 # Author: Arnaud Simo
 # 24.11.2025
+# Ce programme ecrit une chaine de charactere dans un fichier texte.
+
 
 #set -e
 #set -u
