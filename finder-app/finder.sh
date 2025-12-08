@@ -28,8 +28,10 @@ if [ ! -d "$filesdir" ]; then
 	exit 1
 fi
 
-MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines are ${NUMLINES}"
+# Nombre de fichiers: 
+NUMFILES=$(find "$filesdir" -type f | wc -l)
 
+# Nombre de lignes contenant le texte
+NUMLINES=$(grep -R "$searchstr" "$filesdir" 2>/dev/null | wc -l)
 
-echo  "${MATCHSTR}"
-
+echo "The number of files are ${NUMFILES} and the number of matching lines are ${NUMLINES}"

@@ -2,17 +2,22 @@
 # Tester script for assignment 1 and assignment 2
 # Author: Siddhant Jajoo
 # Modified by Arnaud, on the 27.11.2025
-
+#
+#
+#
+#
+#
+#
+#
 # Updates
 # replace writer.sh by writer.c
 
 set -e
 set -u
 
-#Arguments
+#Arguments par defaut
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
-
 WRITEDIR=/tmp/aeld-data
 username=$(cat conf/username.txt)
 
@@ -34,14 +39,8 @@ fi
 MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines are ${NUMFILES}"
 
 echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
-
-echo "                                 "
-echo "--DEBUG 01--"
-#echo "output=OUTPUTSTRING=$OUTPUTSTRING"
-echo "output2=MATCHSTR=$MATCHSTR"
-echo "---------"
  
-#rm -rf "${WRITEDIR}"
+rm -rf "${WRITEDIR}"
 
 # create $WRITEDIR if not assignment1
 assignment=`cat ../conf/assignment.txt`
@@ -60,21 +59,18 @@ then
 		exit 1
 	fi
 fi
-#echo "Removing the old writer utility and compiling as a native application"
-#make clean
-#make
+
+make clean
+make
+ 
 
 for i in $( seq 1 $NUMFILES)
 do
 	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
+#Vérifie combien de lignes contiennent le texte cherché.
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
-echo "                                 "
-echo "--DEBUG 02--"
-echo "output=OUTPUTSTRING=$OUTPUTSTRING"
-echo "output2=MATCHSTR=$MATCHSTR"
-echo "---------"
 
 set +e
 echo ${OUTPUTSTRING} | grep "${MATCHSTR}"

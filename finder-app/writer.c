@@ -16,9 +16,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 	
-    const char *filename = "/tmp/aeld-data/example.txt";
-    const char *content = argv[1];
-	
+    const char *filename = argv[1]; //"/tmp/aeld-data/example.txt";
+    const char *content = argv[2];
+
 	 // --- open syslog ---
 	openlog("LOG_16h46", LOG_PID, LOG_USER);
 	
