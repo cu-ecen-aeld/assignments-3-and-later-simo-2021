@@ -3,14 +3,17 @@
 # Author: Siddhant Jajoo
 # Modified by Arnaud, on the 27.11.2025
 #
-#
-#
-#
-#
-#
-#
+# Ce script valide le bon fonctionnement de 2 prog: 
+# writer: ecrit une chaine de charactere dans un fichier
+#	&
+# finder.sh 
+#	cherche une chaine de charactere dans un fichier et y compte le nombre de fichier.
+#   exemple: ./finder-test.sh 1 test_string / 
+#   
 # Updates
 # replace writer.sh by writer.c
+# New modification: 11.12.2025
+# remove make step and replace with cross-compiler
 
 set -e
 set -u
@@ -23,10 +26,12 @@ username=$(cat conf/username.txt)
 
 if [ $# -lt 3 ]
 then
-	echo "Using default value ${WRITESTR} for string to write"
+	echo "No parameters                        "
+	echo "Using default value: ${WRITESTR} for string to write"
 	if [ $# -lt 1 ]
 	then
-		echo "Using default value ${NUMFILES} for number of files to write"
+		echo "                                                             "
+		echo "Using default value: ${NUMFILES} for number of files to write"
 	else
 		NUMFILES=$1
 	fi	
@@ -39,7 +44,7 @@ fi
 MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines are ${NUMFILES}"
 
 echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
- 
+
 rm -rf "${WRITEDIR}"
 
 # create $WRITEDIR if not assignment1
@@ -54,14 +59,16 @@ then
 	#This issue can also be resolved by using double square brackets i.e [[ ]] instead of using quotes.
 	if [ -d "$WRITEDIR" ]
 	then
-		echo "$WRITEDIR created"
+		echo "Folder '$WRITEDIR' has been created"
 	else
 		exit 1
 	fi
 fi
 
 make clean
-make
+
+# Add make cross compiler
+make CC=aarch64-linux-gnu-gcc
  
 
 for i in $( seq 1 $NUMFILES)
@@ -69,7 +76,7 @@ do
 	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
-#Vérifie combien de lignes contiennent le texte cherché.
+# Lance finder.sh pour chercher WRITESTR dans WRITEDIR → récupère le résultat dans OUTPUTSTRING
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
 
 set +e
