@@ -1,13 +1,28 @@
-CC ?= $(CROSS_COMPILE)gcc
-SRCS := writer.c  # Ou tes fichiers sources réels
-TARGET := writer  # Nom de l'exécutable
+# Nouveau Makefile pour le Buildroot
+# 29DEC2025 - Arnaud SImo
 
+
+# Nom de l'exécutable
+TARGET = writer
+
+# Sources
+SRC = writer.c
+
+# Ne PAS définir CC : Buildroot le fournit
+# Ne PAS définir CROSS_COMPILE
+
+# Ajouter nos flags sans écraser ceux de Buildroot
+CFLAGS += -Wall -g 
+
+# Règle par défaut
 all: $(TARGET)
 
-$(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
+# Construction du binaire
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
 
+# Nettoyage
 clean:
 	rm -f $(TARGET) *.o
 
-.PHONY: all clean 
+distclean: clean
