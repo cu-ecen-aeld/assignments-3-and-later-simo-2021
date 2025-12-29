@@ -89,7 +89,9 @@ for i in $( seq 1 $NUMFILES)
 do
 	#/home/writer "${WRITEDIR}/${username}$i.txt" "${WRITESTR}"
 	#./writer "${WRITEDIR}/${username}$i.txt" "${WRITESTR}"
-	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	/usr/bin/writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	
+	/etc/finder-app/writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
