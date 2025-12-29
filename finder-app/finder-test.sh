@@ -30,7 +30,7 @@ WRITESTR=AELD_IS_FUN
 WRITEDIR=/tmp/aeld-data
 
 # ===== CORRECTION 1 : Chemin ABSOLU vers conf (adapté à QEMU) =====
-CONF_DIR="/conf"  # Dossier conf dans QEMU
+CONF_DIR="etc/conf"  # Dossier conf dans QEMU
 #username=$(cat conf/username.txt)
 username=$(cat "${CONF_DIR}/username.txt")
 assignment=$(cat "${CONF_DIR}/assignment.txt")
