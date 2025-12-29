@@ -2,28 +2,23 @@
 # 29DEC2025 - Arnaud SImo
 
 
-# Nom de l'exécutable
-TARGET = writer
+# Utiliser le compilateur cross fourni par Buildroot
+CC ?= $(CROSS_COMPILE)gcc
 
-# Sources
-SRC = writer.c
+# Fichiers sources (ex: writer.c) et nom de l'exécutable final
+SRCS := writer.c  # Remplace par tes fichiers .c réels
+TARGET := writer  # Nom de l'exécutable généré
 
-# Ne PAS définir CC : Buildroot le fournit
-# Ne PAS définir CROSS_COMPILE
-
-# Ajouter nos flags sans écraser ceux de Buildroot
-CFLAGS += -Wall -g 
-
-# Règle par défaut
+# Cible par défaut (OBLIGATOIRE pour Buildroot)
 all: $(TARGET)
 
-# Construction du binaire
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
+# Règle pour compiler l'exécutable
+$(TARGET): $(SRCS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
-# Nettoyage
+# Règle pour nettoyer les fichiers générés
 clean:
 	rm -f $(TARGET) *.o
 
-distclean: clean
-
+# Déclarer les cibles comme "phony" (pas de fichier correspondant)
+.PHONY: all clean
