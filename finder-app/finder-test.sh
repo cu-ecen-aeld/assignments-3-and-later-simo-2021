@@ -94,7 +94,7 @@ do
 	/etc/finder-app/writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
-OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
+OUTPUTSTRING=$(/usr/bin/finder.sh "$WRITEDIR" "$WRITESTR")
 echo "                                 "
 echo "--DEBUG 02--"
 echo "output=OUTPUTSTRING=$OUTPUTSTRING"
