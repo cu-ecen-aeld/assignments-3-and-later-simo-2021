@@ -14,22 +14,24 @@ AESD_ASSIGNMENTS_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-simo
 AESD_ASSIGNMENTS_SITE_METHOD = git
 AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
 
+
+
+AESD_ASSIGNMENTS_VERSION = 7e3a2132e731ecc51945a879bc9da2d87ad3c852
+AESD_ASSIGNMENTS_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-simo-2021.git
+AESD_ASSIGNMENTS_SITE_METHOD = git
+AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
+
 define AESD_ASSIGNMENTS_BUILD_CMDS
-    $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/finder-app all
+	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/finder-app all
 endef
 
-# TODO add your writer, finder and finder-test utilities/scripts to the installation steps below
 define AESD_ASSIGNMENTS_INSTALL_TARGET_CMDS
-    # Créer les répertoires de configuration
-    $(INSTALL) -d -m 0755 $(@D)/conf/ $(TARGET_DIR)/etc/finder-app/conf/
-    # Copier les fichiers de configuration
-    $(INSTALL) -m 0644 $(@D)/conf/* $(TARGET_DIR)/etc/finder-app/conf/
-    # Installer les scripts et exécutables
-    $(INSTALL) -m 0755 $(@D)/finder-app/writer $(TARGET_DIR)/usr/bin/
-    $(INSTALL) -m 0755 $(@D)/finder-app/finder.sh $(TARGET_DIR)/usr/bin/
-    $(INSTALL) -m 0755 $(@D)/finder-app/finder-test.sh $(TARGET_DIR)/usr/bin/
-    # Copier les fichiers de test si nécessaire
-    $(INSTALL) -m 0755 $(@D)/assignment-autotest/test/assignment4/* $(TARGET_DIR)/usr/bin
+	# Configuration
+	$(INSTALL) -d -m 0755 $(TARGET_DIR)/etc/finder-app/conf
+	$(INSTALL) -m 0644 $(@D)/finder-app/conf/* $(TARGET_DIR)/etc/finder-app/conf/
+
+	# Binaire writer
+	$(INSTALL) -m 0755 $(@D)/finder-app/writer $(TARGET_DIR)/usr/bin/
 endef
 
 $(eval $(generic-package))
