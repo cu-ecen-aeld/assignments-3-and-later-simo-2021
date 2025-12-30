@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/bin/sh
 # Tester script for assignment 1 and assignment 2
 # Author: Arnaud Simo
@@ -69,4 +68,4 @@ if [ -d "$filesdir" ]; then
 else
     echo "The directory '$filesdir' does not exist."
 fi
->>>>>>> 2f2127cb22f6702a5cf4eebc8fe967c3513c15aa
+
