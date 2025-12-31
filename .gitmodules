@@ -1,7 +1,9 @@
 [submodule "assignment-autotest"]
 	path = assignment-autotest
-	url = https://github.com/cu-ecen-aeld/assignment-autotest.git
+	url = git@github.com:cu-ecen/assignment-autotest.git
+
 [submodule "buildroot"]
 	path = buildroot
-	url = https://gitlab.com/buildroot.org/buildroot/
+	url = git@gitlab.com:buildroot.org/buildroot.git
 	branch = 2024.02.x
+
